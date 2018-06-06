@@ -5,6 +5,9 @@ zuul:
     categories:
       path: /categories/**
       serviceId: category-service
+    vendors:
+      path: /vendors/**
+      serviceId: vendors-service
 eureka:
   client:
     service-url:
