@@ -7,7 +7,7 @@ zuul:
       serviceId: category-service
     vendors:
       path: /vendors/**
-      serviceId: vendors-service
+      serviceId: vendor-service
 eureka:
   client:
     service-url:
