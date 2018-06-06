@@ -1,6 +1,7 @@
 server:
   port: 8765
 zuul:
+  ignoredServices: '*'
   routes:
     categories:
       path: /categories/**
