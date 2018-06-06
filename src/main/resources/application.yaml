@@ -1,0 +1,25 @@
+server:
+  port: 8765
+zuul:
+  routes:
+    categories:
+      path: /categories/**
+      serviceId: category-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://naming:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: zuul-gateway
+
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
