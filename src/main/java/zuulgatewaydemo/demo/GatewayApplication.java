@@ -8,9 +8,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableZuulProxy
 @EnableFeignClients
-public class DemoApplication {
+public class GatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 }
