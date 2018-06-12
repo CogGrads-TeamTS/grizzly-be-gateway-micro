@@ -3,6 +3,9 @@ server:
 zuul:
   ignoredServices: '*'
   routes:
+    config:
+      path: /config/default
+      serviceId: config-service
     categories:
       path: /categories/**
       serviceId: category-service
