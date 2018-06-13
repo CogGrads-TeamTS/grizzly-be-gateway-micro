@@ -6,6 +6,9 @@ zuul:
     config:
       path: /config/**
       serviceId: config-service
+    products:
+      path: /products/**
+      serviceId: product-service
     categories:
       path: /categories/**
       serviceId: category-service
