@@ -15,6 +15,9 @@ zuul:
     vendors:
       path: /vendors/**
       serviceId: vendor-service
+    user:
+      path: /user/**
+      serviceId: user-service
   # don't allow production configs to be accessed via gateway
   ignored-patterns: /config/**/prod
 eureka:
