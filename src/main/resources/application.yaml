@@ -23,7 +23,9 @@ zuul:
 eureka:
   client:
     service-url:
-      defaultZone: http://naming:8761/eureka/
+#      FIXME RESORT BACK!
+#      defaultZone: http://naming:8761/eureka/
+      defaultZone: http://localhost:8761/eureka
     registerWithEureka: true
     fetchRegistry: true
   instance:
