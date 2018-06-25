@@ -1,16 +1,15 @@
 package zuulgatewaydemo.demo.Model;
 
-public class Category {
-    public Category() {}
-
-    public Category(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+public class Vendor {
 
     private Long id;
 
     private String name;
+
+    public Vendor(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -27,5 +26,4 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-
 }
