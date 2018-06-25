@@ -1,38 +1,21 @@
 server:
   port: 8765
-zuul:
-  ignoredServices: '*'
-  routes:
-    config:
-      path: /config/**
-      serviceId: config-service
-    products:
-      path: /products/**
-      serviceId: product-service
-    categories:
-      path: /categories/**
-      serviceId: category-service
-    vendors:
-      path: /vendors/**
-      serviceId: vendor-service
-    user:
-      path: /user/**
-      serviceId: user-service
-  # don't allow production configs to be accessed via gateway
-  ignored-patterns: /config/**/prod
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+      config:
+        discovery:
+          # looks for config service on the naming service and uses that as the config server
+          enabled: true
+          service-id: config-service
+        uri: http://ts.ausgrads.academy:8765/config/
+
 eureka:
   client:
     service-url:
       defaultZone: http://naming:8761/eureka/
-    registerWithEureka: true
-    fetchRegistry: true
-  instance:
-    prefer-ip-address: true
-
-spring:
-  application:
-    name: zuul-gateway
-
 
 logging:
   level:
