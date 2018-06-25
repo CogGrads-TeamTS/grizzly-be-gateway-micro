@@ -1,0 +1,23 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+      config:
+        discovery:
+          # looks for config service on the naming service and uses that as the config server
+          enabled: true
+          service-id: config-service
+        uri: http://ts.ausgrads.academy:8765/config/
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://naming:8761/eureka/
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
