@@ -17,6 +17,9 @@ eureka:
     service-url:
       defaultZone: http://naming:8761/eureka/
 
+feign:
+  hystrix:
+
 logging:
   level:
     ROOT: INFO
