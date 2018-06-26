@@ -45,14 +45,34 @@ public class SearchController {
         List<Vendor> vendors = vendorClient.getAllProductsByLen(size / 3, search);
 
         // Convert
-        if (categories.size() == 0) categories = new ArrayList<>();
-        if (products.size() == 0) products = new ArrayList<>();
-        if (vendors.size() == 0) vendors = new ArrayList<>();
+        int[] sizes = calcCatSize(size);
+
+        if (categories.size() == sizes[0]) categories = new ArrayList<>();
+        if (products.size() == sizes[1]) products = new ArrayList<>();
+        if (vendors.size() == sizes[2]) vendors = new ArrayList<>();
 
         results.put("categories", categories);
         results.put("products", products);
         results.put("vendors", vendors);
 
         return new ResponseEntity(results, HttpStatus.ACCEPTED);
+    }
+
+//    Helper method for dynamic search lengths that are not divisible by 3 (prevents rounding down)
+    public int[] calcCatSize(int size){
+        int base = size / 3;
+        int[] sizes = {base, base, base};
+
+        int rem = size % 3;
+        switch (rem) {
+            case 1:
+                sizes[0] += 1;
+                break;
+            case 2:
+                sizes[0] += 1;
+                sizes[1] += 1;
+                break;
+        }
+        return sizes;
     }
 }
