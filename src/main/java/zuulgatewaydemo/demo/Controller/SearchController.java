@@ -35,7 +35,7 @@ public class SearchController {
     @GetMapping("/search")
     public ResponseEntity<HashMap<String, List<Object>>> search(@RequestParam int size, @RequestParam String search) {
 
-        HashMap<String, List<Object>> results = new HashMap<>();
+        HashMap<String, List> results = new HashMap<>();
 
         if (size <= 0) return new ResponseEntity("Size must be greater or equal to 0", HttpStatus.BAD_REQUEST);
 
@@ -47,11 +47,11 @@ public class SearchController {
         // Convert
         if (categories.size() == 0) categories = new ArrayList<>();
         if (products.size() == 0) products = new ArrayList<>();
-        if (products.size() == 0) vendors = new ArrayList<>();
+        if (vendors.size() == 0) vendors = new ArrayList<>();
 
-        results.put("categories", (List<Object>) (Object) categories);
-        results.put("products", (List<Object>) (Object) products);
-        results.put("vendors", (List<Object>) (Object) vendors);
+        results.put("categories", categories);
+        results.put("products", products);
+        results.put("vendors", vendors);
 
         return new ResponseEntity(results, HttpStatus.ACCEPTED);
     }
