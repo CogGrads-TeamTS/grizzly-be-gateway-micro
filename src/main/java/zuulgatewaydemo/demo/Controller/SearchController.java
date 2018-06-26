@@ -39,40 +39,36 @@ public class SearchController {
 
         if (size <= 0) return new ResponseEntity("Size must be greater or equal to 0", HttpStatus.BAD_REQUEST);
 
+        // Set remaining size
+        int remSize = size;
+
+        // Declare lists
+        List<Category> categories = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        List<Vendor> vendors = new ArrayList<>();
+
+
         // Get search list from respective microservices
-        List<Category> categories = categoryClient.getAllCategoriesByLen(size / 3, search);
-        List<Product> products = productClient.getAllProductsByLen(size / 3, search);
-        List<Vendor> vendors = vendorClient.getAllProductsByLen(size / 3, search);
+        while(true) {
+            categories = categoryClient.getAllCategoriesByLen(remSize, search);
+            remSize -= categories.size(); if(remSize <= 0) break;
 
-        // Convert
-        int[] sizes = calcCatSize(size);
+            products = productClient.getAllProductsByLen(remSize, search);
+            remSize -= products.size(); if(remSize <= 0) break;
 
-        if (categories.size() == sizes[0]) categories = new ArrayList<>();
-        if (products.size() == sizes[1]) products = new ArrayList<>();
-        if (vendors.size() == sizes[2]) vendors = new ArrayList<>();
+            vendors = vendorClient.getAllProductsByLen(remSize, search);
+            break;
+        }
+
+        // Send empty array if null
+        if (categories.size() == 0) categories = new ArrayList<>();
+        if (products.size() == 0) products = new ArrayList<>();
+        if (vendors.size() == 0) vendors = new ArrayList<>();
 
         results.put("categories", categories);
         results.put("products", products);
         results.put("vendors", vendors);
 
         return new ResponseEntity(results, HttpStatus.ACCEPTED);
-    }
-
-//    Helper method for dynamic search lengths that are not divisible by 3 (prevents rounding down)
-    public int[] calcCatSize(int size){
-        int base = size / 3;
-        int[] sizes = {base, base, base};
-
-        int rem = size % 3;
-        switch (rem) {
-            case 1:
-                sizes[0] += 1;
-                break;
-            case 2:
-                sizes[0] += 1;
-                sizes[1] += 1;
-                break;
-        }
-        return sizes;
     }
 }
