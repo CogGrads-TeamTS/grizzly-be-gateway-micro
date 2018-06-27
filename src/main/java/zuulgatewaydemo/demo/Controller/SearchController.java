@@ -50,11 +50,11 @@ public class SearchController {
 
         // Get search list from respective microservices
         while(true) {
-            categories = categoryClient.getAllCategoriesByLen(remSize, search);
-            remSize -= categories.size(); if(remSize <= 0) break;
-
             products = productClient.getAllProductsByLen(remSize, search);
             remSize -= products.size(); if(remSize <= 0) break;
+            
+            categories = categoryClient.getAllCategoriesByLen(remSize, search);
+            remSize -= categories.size(); if(remSize <= 0) break;
 
             vendors = vendorClient.getAllProductsByLen(remSize, search);
             break;
