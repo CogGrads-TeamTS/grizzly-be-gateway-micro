@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/user/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/").authenticated()
                 .antMatchers(HttpMethod.GET, "/user/current").authenticated()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().permitAll();
     }
 }
