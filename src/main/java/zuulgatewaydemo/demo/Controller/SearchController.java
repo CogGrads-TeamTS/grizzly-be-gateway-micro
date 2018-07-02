@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 public class SearchController {
 
     @Autowired
