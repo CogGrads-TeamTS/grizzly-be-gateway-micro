@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // global configuration for routes to the different microservices
+        // global configuration for routes to the different micro services
                 JwtWebSecurityConfigurer
                 .forRS256(apiAudience, issuer)
                 .configure(http).cors().and()
